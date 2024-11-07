@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalla Pokémon</title>
+    <link rel="stylesheet" href="batalla.css">
+</head>
+<body>
+    <div id="battle-container">
+        <h1>¡Batalla Pokémon!</h1>
+
+        <div id="pokemon-container">
+            <div id="player">
+                <h2>Tu Pokémon</h2>
+                <img id="pokemonJugador" src="" alt="Tu Pokémon">
+                <p id="pokemonJugadorNombre"></p>
+                <p> HP: <span id="pokemonJugadorVida"></span> / <span id="pokemonJugadorVidaMaxima"></span></p>
+            </div>
+            
+            <div id="opponent">
+                <h2>Pokémon Rival</h2>
+                <img id="pokemonRival" src="" alt="Pokémon Rival">
+                <p id="pokemonRivalNombre"></p>
+                <p> HP: <span id="pokemonRivalVida"></span> / <span id="pokemonRivalVidaMaxima"></span></p>
+            </div>
+        </div>
+
+        <div id="actions">
+            <button onclick="atacar()">Atacar</button>
+            <button onclick="curarse()">Curarse</button>
+            <button onclick="rendirse()">Retirarse</button>
+        </div>
+
+        <div id="log">
+            <h2>Registro de batalla</h2>
+            <p id="Registro"></p>
+        </div>
+        
+        <div id="mensajeResultado" class="mensajeResultado">
+            <h1 id="resultadoText"></h1>
+        </div>
+
+    </div>
+    <button onclick="window.location.href='pokemon.html'">Volver Al Inicio</button>
+    <script src="batalla.js"></script>
+</body>
+</html>

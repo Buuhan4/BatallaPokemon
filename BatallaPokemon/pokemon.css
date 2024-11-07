@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body {
+    font-family: 'Press Start 2P',sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #36daef;
+    font-size: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#elegir-pokemon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.centrar-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    width: 120px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
+.pokemon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+img {
+    width: 100%; 
+    height: auto;
+}
+
+span {
+    display: block;
+    margin-top: 5px;
+}
+
+.elegir-btn {
+    margin-top: auto;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #FF7F50, #FFD700);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.elegir-btn:hover {
+    background: linear-gradient(135deg, #FFD700, #FF7F50);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.aleatorio {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.aleatorio:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+.aleatorio:active {
+    transform: translateY(2px);
+}
+.shiny-star {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    color: yellow;
+    z-index: 10;
+}
+
+.water {
+    background-color: #1376e6;
+}
+
+.plant {
+    background-color: #98FB98;
+}
+
+.fire {
+    background-color: #FF7F50;
+}
+
+.electric {
+    background-color: #FFD700;
+}
+.steel {
+    background-color: #8A8A9F;
+}
+.psychic {
+    background-color: #DDA0DD;
+}
+.normal{
+  background-color: #9c9b91;
+}
+.bug {
+    background-color: #17a017;
+}
+
+.rock {
+    background-color: #705848;
+}
+.poison{
+    background-color:#A040A0 ;
+}
+.flying {
+    background-color: #36daef; 
+}
+.ground{
+    background-color:#E0C068; 
+}
+.fairy {
+    background-color: #FF6F91;
+} 
+.grass{
+    background-color: #a8e6cf;
+}
+.fighting {
+    background-color: #A52A2A;
+}
+.dragon{
+    background-color: #4B9D5A;
+}
+.ice {
+    background-color: #B3EDED;
+}
+.ghost {
+    background-color: #2E2B4F;
+}
+.grassPoison {
+    background: linear-gradient(135deg, #a8e6cf 40%, #A040A0 60%);
+}
+ .fireFlying{
+    background: linear-gradient(135deg, #FF7F50 40%, #36daef 60%);
+ }
+ .bugFlying{
+    background: linear-gradient(135deg, #17a017 40%, #36daef 60%);
+ }
+ .bugPoison{
+    background: linear-gradient(135deg, #17a017 40%, #A040A0 60%);
+ }
+.normalFlying{
+    background: linear-gradient(135deg, #9c9b91 40%, #36daef 60%);  
+}
+.poisonGround{
+    background: linear-gradient(135deg,  #A040A0 40%, #E0C068 60%);  
+}
+.normalFairy{
+    background: linear-gradient(135deg,  #9c9b91 40%, #FF6F91 60%);  
+}
+.poisonFlying{
+    background: linear-gradient(135deg,  #A040A0 40%, #36daef 60%);  
+}
+.bugGrass{
+    background: linear-gradient(135deg, #17a017 40%, #a8e6cf 60%);
+}
+.waterFighting{
+    background: linear-gradient(135deg, #1376e6 40%, #A52A2A 60%);
+}
+.waterPoison{
+    background: linear-gradient(135deg, #1376e6 40%, #A040A0 60%);
+}
+.rockGround{
+    background: linear-gradient(135deg,  #705848 40%, #E0C068 60%);
+}
+.waterPsychic{
+    background: linear-gradient(135deg, #1376e6 40%, #DDA0DD 60%);
+}
+.electricSteel{
+    background: linear-gradient(135deg, #FFD700 40%, #8A8A9F 60%);
+}
+.waterIce{
+    background: linear-gradient(135deg, #1376e6 40%, #B3EDED 60%);
+}
+.ghostPoison{
+    background: linear-gradient(135deg, #2E2B4F 40%, #A040A0 60%);
+}
+.grassPsychic{
+    background: linear-gradient(135deg, #a8e6cf 40%, #DDA0DD 60%);
+}
+.groundRock{
+    background: linear-gradient(135deg, #E0C068 40%, #705848 60%);
+}
+.psychicFairy{
+    background: linear-gradient(135deg, #DDA0DD 40%, #FF6F91 60%);
+}
+.icePsychic{
+    background: linear-gradient(135deg, #B3EDED 40%, #DDA0DD 60%);
+}
+.waterFlying{
+    background: linear-gradient(135deg, #1376e6 40%, #36daef 60%);
+}
+.rockWater{
+    background: linear-gradient(135deg, #705848 40%, #1376e6 60%);
+}
+.rockFlying{
+    background: linear-gradient(135deg, #705848 40%, #36daef 60%);
+}
+.iceFlying{
+    background: linear-gradient(135deg, #B3EDED 40%, #36daef 60%);
+}
+.electricFlying{
+    background: linear-gradient(135deg, #FFD700 40%, #36daef 60%);
+}
+.dragonFlying{
+    background: linear-gradient(135deg, #4B9D5A 40%, #36daef 60%);
+}
+
