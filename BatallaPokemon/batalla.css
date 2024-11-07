@@ -1,19 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
 body {
     font-family: 'Press Start 2P', sans-serif;
     text-align: center;
     font-size: 10px;
     background-color: #36daef;
-    background-image: url('https://i.pinimg.com/736x/d2/07/c6/d207c60d21f5fb517ec5f459f992bf74.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
 }
 
@@ -23,7 +14,7 @@ body {
     padding: 20px;
     border: 2px solid #333;
     border-radius: 10px;
-    background-color: rgba(247, 247, 247, 0.8); /* Fondo semi-transparente para que se vea la imagen detrás */
+    background-color: rgba(247, 247, 247, 0.8);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 

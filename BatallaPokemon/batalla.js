@@ -53,7 +53,9 @@ function mostrarResultado(ganador) {
 }
 
 function atacar() {
-    const danoAlDefensor = Math.max(jugador.attack - rival.defense, 5);
+    let poderMovimiento=10;
+    const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+    const danoAlDefensor = Math.max(Math.round((jugador.attack / rival.defense) * randomFactor * poderMovimiento), 5);
     rival.currentHp = Math.max(rival.currentHp - danoAlDefensor, 0);
     document.getElementById("pokemonRivalVida").textContent = rival.currentHp.toFixed(0);
     actualizarRegistroDeBatalla(`${jugador.name} ataca y causa ${danoAlDefensor} de daño a ${rival.name}!`);
@@ -82,10 +84,13 @@ function curarse() {
         document.getElementById("botonCurar").disabled = true;
     }
 }
+
 function turnoRival() {
     const numeroAleatorio = Math.floor(Math.random() * 2);
     if (numeroAleatorio == 0) {
-        const danoAlDefensor = Math.max(rival.attack - jugador.defense, 5);
+        let poderMovimiento=10;
+        const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+        const danoAlDefensor = Math.max(Math.round((rival.attack / jugador.defense) * randomFactor * poderMovimiento), 5);
         jugador.currentHp = Math.max(jugador.currentHp - danoAlDefensor, 0);
         document.getElementById("pokemonJugadorVida").textContent = jugador.currentHp.toFixed(0);
         actualizarRegistroDeBatalla(`${rival.name} ataca y causa ${danoAlDefensor} de daño a ${jugador.name}!`);
@@ -97,7 +102,9 @@ function turnoRival() {
             return;
         }
     } else {
-        const danoAlDefensor = Math.max(rival.attack - jugador.defense, 5);
+        let poderMovimiento=10;
+        const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+        const danoAlDefensor = Math.max(Math.round((rival.attack / jugador.defense) * randomFactor * poderMovimiento), 5);
         jugador.currentHp = Math.max(jugador.currentHp - danoAlDefensor, 0);
         document.getElementById("pokemonJugadorVida").textContent = jugador.currentHp.toFixed(0);
         actualizarRegistroDeBatalla(`${rival.name} ataca y causa ${danoAlDefensor} de daño a ${jugador.name}!`);
