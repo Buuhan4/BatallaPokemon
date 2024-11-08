@@ -1,7 +1,7 @@
 let curacionLimite = true;
 let limiteCuracion = true;
 let curacionRival = true;
-
+let turnoRed=true;
 const jugador = JSON.parse(localStorage.getItem('selectedPokemon'));
 const rival = JSON.parse(localStorage.getItem('pokemonRival'));
 
@@ -53,37 +53,92 @@ function mostrarResultado(ganador) {
     }, 3000);
 }
 
-function atacar() {
-    let poderMovimiento = 10;
-    const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
-    const danoAlDefensor = Math.max(Math.round((jugador.attack / rival.defense) * randomFactor * poderMovimiento), 5);
-    rival.currentHp = Math.max(rival.currentHp - danoAlDefensor, 0);
-    document.getElementById("pokemonRivalVida").textContent = rival.currentHp.toFixed(0);
-    actualizarRegistroDeBatalla(`${jugador.name} ataca y causa ${danoAlDefensor} de daño a ${rival.name}!`);
+function actualizarBarraVidaJugador() {
+    let barraVidaJugador = document.getElementById("pokemonJugadorVidaBarra");
+    let porcentajeVida = (jugador.currentHp / jugador.hp) * 100;
+    barraVidaJugador.style.width = `${porcentajeVida}%`;
 
-    if (rival.currentHp <= 0) {
-        actualizarRegistroDeBatalla(`¡${rival.name} ha sido derrotado!`);
-        mostrarResultado("Red");
-        desactivarBotones();
+    if (porcentajeVida >= 50) {
+        barraVidaJugador.style.backgroundColor = "green";
+    } else if (porcentajeVida >= 25) {
+        barraVidaJugador.style.backgroundColor = "lightyellow";
+    } else {
+        barraVidaJugador.style.backgroundColor = "red";
+    }
+}
+
+function actualizarBarraVidaRival() {
+    let barraVidaRival = document.getElementById("pokemonRivalVidaBarra");
+    let porcentajeVida = (rival.currentHp / rival.hp) * 100;
+    barraVidaRival.style.width = `${porcentajeVida}%`;
+
+    if (porcentajeVida >= 50) {
+        barraVidaRival.style.backgroundColor = "green";
+    } else if (porcentajeVida >= 25) {
+        barraVidaRival.style.backgroundColor = "#FFFF00";
+    } else {
+        barraVidaRival.style.backgroundColor = "red";
+    }
+}
+
+function atacar() {
+    if(turnoRed){
+        document.getElementById("turnoDeRed").textContent = "Turno de Red"; 
+    
+        let poderMovimiento = 10;
+        const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+        const danoAlDefensor = Math.max(Math.round((jugador.attack / rival.defense) * randomFactor * poderMovimiento), 5);
+        rival.currentHp = Math.max(rival.currentHp - danoAlDefensor, 0);
+        
+        actualizarBarraVidaRival();
+        document.getElementById("pokemonRivalVida").textContent = rival.currentHp.toFixed(0);
+        actualizarRegistroDeBatalla(`${jugador.name} ataca y causa ${danoAlDefensor} de daño a ${rival.name}!`);
+    
+        if (rival.currentHp <= 0) {
+            actualizarRegistroDeBatalla(`¡${rival.name} ha sido derrotado!`);
+            mostrarResultado("Red");
+            desactivarBotones();
+            return;
+        }
+    turnoRed=false;
+        setTimeout(() => {
+            document.getElementById("turnoDeRed").textContent = "Turno del Rival";
+            setTimeout(() => {
+                turnoRival();
+            }, 2000);
+        }, 2000);
+    }else{
         return;
     }
-
-    turnoRival();
+    
 }
 
 function curarse() {
-    if (curacionLimite) {
-        let curacion = jugador.hp * 0.5;
-        jugador.currentHp = Math.min(jugador.currentHp + curacion, jugador.hp);
-        document.getElementById("pokemonJugadorVida").textContent = jugador.currentHp.toFixed(0);
-        actualizarRegistroDeBatalla(`${jugador.name} se cura y recupera ${curacion.toFixed(0)} puntos de vida!`);
-        curacionLimite = false;
-
-        turnoRival();
-    } else {
-        actualizarRegistroDeBatalla(`${jugador.name} ya no puede curarse más en esta batalla.`);
-        document.getElementById("botonCurar").disabled = true;
+    if(turnoRed){
+        if (curacionLimite) {
+            let curacion = jugador.hp * 0.5;
+            jugador.currentHp = Math.min(jugador.currentHp + curacion, jugador.hp);
+            
+            actualizarBarraVidaJugador();
+            document.getElementById("pokemonJugadorVida").textContent = jugador.currentHp.toFixed(0);
+            actualizarRegistroDeBatalla(`${jugador.name} se cura y recupera ${curacion.toFixed(0)} puntos de vida!`);
+            curacionLimite = false;
+    
+            turnoRed=false;
+            setTimeout(() => {
+                document.getElementById("turnoDeRed").textContent = "Turno del Rival";
+                setTimeout(() => {
+                    turnoRival();
+                }, 2000);
+            }, 2000);
+        } else {
+            actualizarRegistroDeBatalla(`${jugador.name} ya no puede curarse más en esta batalla.`);
+            document.getElementById("botonCurar").disabled = true;
+        }
+    }else{
+        return;
     }
+    
 }
 
 function turnoRival() {
@@ -93,6 +148,8 @@ function turnoRival() {
         const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
         const danoAlDefensor = Math.max(Math.round((rival.attack / jugador.defense) * randomFactor * poderMovimiento), 5);
         jugador.currentHp = Math.max(jugador.currentHp - danoAlDefensor, 0);
+        
+        actualizarBarraVidaJugador();
         document.getElementById("pokemonJugadorVida").textContent = jugador.currentHp.toFixed(0);
         actualizarRegistroDeBatalla(`${rival.name} ataca y causa ${danoAlDefensor} de daño a ${jugador.name}!`);
 
@@ -106,7 +163,9 @@ function turnoRival() {
         if (curacionRival) {
             let curacion = rival.hp * 0.5;
             rival.currentHp = Math.min(rival.currentHp + curacion, rival.hp);
-            document.getElementById("pokemonJugadorVida").textContent = rival.currentHp.toFixed(0);
+            
+            actualizarBarraVidaRival();
+            document.getElementById("pokemonRivalVida").textContent = rival.currentHp.toFixed(0);
             actualizarRegistroDeBatalla(`${rival.name} se cura y recupera ${curacion.toFixed(0)} puntos de vida!`);
             curacionRival = false;
         } else {
@@ -114,6 +173,8 @@ function turnoRival() {
             const randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
             const danoAlDefensor = Math.max(Math.round((rival.attack / jugador.defense) * randomFactor * poderMovimiento), 5);
             jugador.currentHp = Math.max(jugador.currentHp - danoAlDefensor, 0);
+            
+            actualizarBarraVidaJugador();
             document.getElementById("pokemonJugadorVida").textContent = jugador.currentHp.toFixed(0);
             actualizarRegistroDeBatalla(`${rival.name} ataca y causa ${danoAlDefensor} de daño a ${jugador.name}!`);
 
@@ -125,6 +186,11 @@ function turnoRival() {
             }
         }
     }
+
+    setTimeout(() => {
+        document.getElementById("turnoDeRed").textContent = "Turno de Red";
+        turnoRed=true;
+    }, 2000);
 }
 
 function rendirse() {

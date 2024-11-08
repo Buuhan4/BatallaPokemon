@@ -10,11 +10,16 @@
     <div id="battle-container">
         <h1>¡Batalla Pokémon!</h1>
 
+        <div id="turnoDeRed" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></div>
+
         <div id="pokemon-container">
             <div id="player">
                 <h2>Tu Pokémon</h2>
                 <img id="pokemonJugador" src="" alt="Tu Pokémon">
                 <p id="pokemonJugadorNombre"></p>
+                <div class="life-bar">
+                    <div id="pokemonJugadorVidaBarra" class="barra-de-vida"></div>
+                </div>
                 <p> HP: <span id="pokemonJugadorVida"></span> / <span id="pokemonJugadorVidaMaxima"></span></p>
             </div>
             
@@ -22,9 +27,13 @@
                 <h2>Pokémon Rival</h2>
                 <img id="pokemonRival" src="" alt="Pokémon Rival">
                 <p id="pokemonRivalNombre"></p>
+                <div class="life-bar">
+                    <div id="pokemonRivalVidaBarra" class="barra-de-vida"></div>
+                </div>
                 <p> HP: <span id="pokemonRivalVida"></span> / <span id="pokemonRivalVidaMaxima"></span></p>
             </div>
         </div>
+        
 
         <div id="actions">
             <button onclick="atacar()">Atacar</button>

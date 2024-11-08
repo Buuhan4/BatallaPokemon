@@ -2,11 +2,11 @@ const selectedPokemon = JSON.parse(localStorage.getItem('selectedPokemon'));
 const pokemonRival = JSON.parse(localStorage.getItem('pokemonRival'));
 
 function agregarEstrella(pokemonDiv, pokemon) {
-    if (pokemon.img.includes('shiny')) {  // Verificamos si es shiny
+    if (pokemon.img.includes('shiny')) {
         const estrellitaShiny = document.createElement('span');
         estrellitaShiny.classList.add('shiny-star');
         estrellitaShiny.textContent = '⭐';
-        pokemonDiv.appendChild(estrellitaShiny);  // Añadimos la estrella al div
+        pokemonDiv.appendChild(estrellitaShiny);
     }
 }
 
